@@ -36,7 +36,34 @@ Você deve ver: `{"status":"OK","message":"Servidor Puppeteer funcionando!"}`
 
 ## 🌐 Deploy Gratuito (Produção)
 
-### Opção 1: Render.com (RECOMENDADO - Mais fácil e confiável)
+### 🤔 Qual plataforma escolher?
+
+| Plataforma | Dificuldade | Tempo de Deploy | Hibernação | Recomendação |
+|------------|-------------|-----------------|------------|--------------|
+| **Railway** | ⭐ Fácil | 2-5 min | Não* | ✅ **MELHOR OPÇÃO** |
+| **Render (Docker)** | ⭐⭐ Médio | 10-15 min | Sim (15 min) | Segunda opção |
+| **Heroku** | ⭐⭐⭐ Difícil | 5-10 min | Sim | Requer cartão |
+
+*Railway: 500h gratuitas/mês = ~16h/dia online
+
+**Recomendação**: Use o **Railway** para começar. É o mais fácil e o Puppeteer funciona perfeitamente!
+
+---
+
+### ⚡ INÍCIO RÁPIDO (Railway - 5 minutos)
+
+1. Acesse [railway.app](https://railway.app)
+2. Login com GitHub
+3. "New Project" → "Deploy from GitHub repo"
+4. Selecione o repositório
+5. Settings → Service → Root Directory: `server`
+6. Settings → Networking → "Generate Domain"
+7. Copie a URL e cole em `src/hooks/useDashboard.ts`
+8. **Pronto!** 🎉
+
+---
+
+### Opção 1: Render.com com Docker (Alternativa mais estável)
 
 1. **Criar conta**: Acesse [render.com](https://render.com) e faça login com GitHub
 2. **Novo Web Service**: Clique em "New +" → "Web Service"
@@ -46,29 +73,43 @@ Você deve ver: `{"status":"OK","message":"Servidor Puppeteer funcionando!"}`
    - **Region**: Escolha a mais próxima
    - **Branch**: `main`
    - **Root Directory**: `server`
-   - **Runtime**: `Node`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
+   - **Environment**: `Docker`
+   - **Dockerfile Path**: `./Dockerfile`
    - **Instance Type**: `Free`
-5. **Environment Variables** (opcional):
+5. **Environment Variables** (já configuradas no Dockerfile):
    - `NODE_ENV`: `production`
+   - `PUPPETEER_EXECUTABLE_PATH`: `/usr/bin/google-chrome-stable`
 6. **Deploy**: Clique em "Create Web Service"
-7. **Aguardar**: O primeiro deploy leva ~5-10 minutos
+7. **Aguardar**: O primeiro deploy com Docker leva ~10-15 minutos
 8. **Obter URL**: Copie a URL gerada (ex: `https://avaliacao-pdf-server.onrender.com`)
 
-**IMPORTANTE**: O tier gratuito do Render hiberna após 15 minutos de inatividade. A primeira requisição após hibernação pode levar 30-60 segundos para acordar o servidor.
+**IMPORTANTE**:
+- O tier gratuito do Render hiberna após 15 minutos de inatividade
+- A primeira requisição após hibernação pode levar 50-60 segundos para acordar
+- Use Docker para garantir que o Chrome seja instalado corretamente
 
-### Opção 2: Railway.app (Alternativa rápida)
+### Opção 2: Railway.app (Alternativa MAIS FÁCIL - Puppeteer funciona out-of-the-box!)
+
+**Railway tem suporte nativo para Puppeteer e é MUITO mais fácil!**
 
 1. **Criar conta**: Acesse [railway.app](https://railway.app) e faça login com GitHub
 2. **Novo projeto**: Clique em "New Project" → "Deploy from GitHub repo"
 3. **Selecionar repositório**: Escolha seu repositório
-4. **Configurar**:
-   - Root Directory: `server`
-   - Build Command: `npm install`
-   - Start Command: `npm start`
-5. **Deploy**: Railway fará o deploy automaticamente
-6. **Obter URL**: Copie a URL gerada (ex: `https://seu-app.railway.app`)
+4. **Configurar automaticamente**: Railway detecta Node.js automaticamente
+5. **Adicionar Root Directory**:
+   - Vá em Settings → Service
+   - Em "Root Directory" coloque: `server`
+6. **Deploy**: Railway fará o deploy automaticamente (2-5 minutos)
+7. **Obter URL**:
+   - Vá em Settings → Networking
+   - Clique em "Generate Domain"
+   - Copie a URL gerada (ex: `https://seu-app.railway.app`)
+
+**VANTAGENS do Railway**:
+- ✅ Puppeteer funciona sem configuração extra
+- ✅ Deploy mais rápido (2-5 minutos)
+- ✅ Não hiberna (sempre online no tier gratuito por 500h/mês)
+- ✅ Melhor performance para aplicações com Puppeteer
 
 ### Opção 3: Heroku (Requer cartão de crédito)
 

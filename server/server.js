@@ -507,6 +507,10 @@ const handlePdfRequest = async (req, res, disposition) => {
     // Configuração ULTRA robusta do Puppeteer
     const puppeteerOptions = {
       headless: 'new',
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH ||
+                      process.env.CHROME_BIN ||
+                      '/usr/bin/google-chrome-stable' ||
+                      undefined,
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
