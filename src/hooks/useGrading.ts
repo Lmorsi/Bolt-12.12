@@ -856,6 +856,24 @@ export const useGrading = (userId: string | undefined, savedAssessments?: any[])
     }
   }
 
+  const handleDeleteGrading = async (gradingId: string) => {
+    try {
+      const { error } = await supabase
+        .from('assessment_gradings')
+        .delete()
+        .eq('id', gradingId)
+
+      if (error) throw error
+
+      await loadGradings()
+      return true
+    } catch (error) {
+      console.error('Erro ao excluir correção:', error)
+      alert('Erro ao excluir correção')
+      return false
+    }
+  }
+
   const handleExportReport = () => {
     if (!selectedReport) return
 
@@ -922,6 +940,7 @@ export const useGrading = (userId: string | undefined, savedAssessments?: any[])
     setViewMode,
     setSelectedReport,
     setSelectedFolder,
+    loadGradings,
     handleCreateClass,
     handleDeleteClass,
     handleViewStudents,
@@ -937,6 +956,7 @@ export const useGrading = (userId: string | undefined, savedAssessments?: any[])
     handleStudentAnswerChange,
     handleSaveGrading,
     handleViewReport,
+    handleDeleteGrading,
     handleExportReport,
     getUniqueAssessments,
     handleCompileReports,

@@ -165,7 +165,7 @@ const ReportsSection: React.FC<ReportsSectionProps> = ({ dashboard }) => {
                             await dashboard.handleDeleteGrading(grading.id)
                           }
 
-                          loadGradings()
+                          dashboard.loadGradings()
                         }}
                         className="text-red-500 hover:text-red-700 transition-colors p-1"
                         title="Excluir todas as correções desta avaliação"
@@ -505,7 +505,7 @@ const ReportsSection: React.FC<ReportsSectionProps> = ({ dashboard }) => {
                               e.stopPropagation()
                               const success = await dashboard.handleDeleteGrading(grading.id)
                               if (success) {
-                                loadGradings()
+                                dashboard.loadGradings()
                               }
                             }}
                             className="text-red-500 hover:text-red-700 transition-colors p-1"
@@ -740,7 +740,7 @@ const ReportsSection: React.FC<ReportsSectionProps> = ({ dashboard }) => {
                                         e.stopPropagation()
                                         const success = await dashboard.handleDeleteGrading(grading.id)
                                         if (success) {
-                                          loadGradings()
+                                          dashboard.loadGradings()
                                         }
                                       }}
                                       className="text-red-500 hover:text-red-700 transition-colors p-1"
