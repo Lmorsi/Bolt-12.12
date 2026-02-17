@@ -9,6 +9,7 @@ import HowItWorksPage from './pages/HowItWorksPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsPage from './pages/TermsPage'
 import RecoverPasswordPage from './components/RecoverPasswordPage'
+import ResetPasswordPage from './pages/ResetPasswordPage'
 import DashboardPage from './components/DashboardPage'
 import GradingPage from './components/GradingPage'
 import ReportsPage from './components/ReportsPage'
@@ -88,6 +89,7 @@ function App() {
           <Route path="/privacidade" element={<PrivacyPolicyPage />} />
           <Route path="/termos" element={<TermsPage />} />
           <Route path="/recuperar-senha" element={<RecoverPasswordPage />} />
+          <Route path="/redefinir-senha" element={<ResetPasswordPage />} />
           <Route
             path="/login"
             element={
