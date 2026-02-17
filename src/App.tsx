@@ -14,6 +14,7 @@ import DashboardPage from './components/DashboardPage'
 import GradingPage from './components/GradingPage'
 import ReportsPage from './components/ReportsPage'
 import AdminPage from './pages/AdminPage'
+import TestEmailPage from './pages/TestEmailPage'
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth()
@@ -90,6 +91,7 @@ function App() {
           <Route path="/termos" element={<TermsPage />} />
           <Route path="/recuperar-senha" element={<RecoverPasswordPage />} />
           <Route path="/redefinir-senha" element={<ResetPasswordPage />} />
+          <Route path="/test-email" element={<TestEmailPage />} />
           <Route
             path="/login"
             element={
